@@ -9,7 +9,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite .1s linear;
   }
 }
 
@@ -35,4 +35,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+.app-bar{
+  z-index: 1;
+  padding-bottom: 10px;
+}
+
+.User-image {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.testcss{
+  background-color:red;
+  color: blue
+
 }
