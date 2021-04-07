@@ -1,7 +1,7 @@
 import React from 'react'
 import TaskList from '../../Components/task/task-llst'
 import { ITask } from '../../Types/task';
-import { async } from 'q';
+import * as moment from 'moment';
 const axios = require('axios').default;
 
 export default class TaskViewContainer extends React.Component<IProps, ILocalState>{
@@ -112,6 +112,8 @@ export default class TaskViewContainer extends React.Component<IProps, ILocalSta
     getFormData = object => Object.keys(object).reduce((formData, key) => {
         if(key === 'id')
             formData.append('taskid', object[key]);
+        else if(key == "due_date")
+            formData.append(key, moment(object[key]).format('YYYY-MM-DD HH:mm:ss'));
         else
             formData.append(key, object[key]);
         return formData;

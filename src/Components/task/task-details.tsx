@@ -4,7 +4,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
-import { DialogActions, TextField } from '@material-ui/core';
+import { DialogActions, TextField, Select, MenuItem, FormControl, InputLabel } from '@material-ui/core';
 import * as moment from 'moment';
 
 export default class TaskDetails extends React.Component<IProps>{
@@ -31,16 +31,27 @@ export default class TaskDetails extends React.Component<IProps>{
                         onChange={this.handleInputChange}
                         value={task.message}
                     />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="assigned_name"
-                        label="Assigned To"
-                        type="string"
-                        fullWidth
-                        value={task.assigned_name}
-                        onChange={this.handleInputChange}
-                    />
+                    <FormControl fullWidth>
+                        <InputLabel>Assigned To</InputLabel>
+                        <Select
+                            native
+                            fullWidth
+                            value={task.assigned_to}
+                            onChange={this.handleInputChange}
+                            inputProps={{
+                                name: 'assigned_to',
+                                id: 'assigned_to',
+                            }}
+                            >
+                            <option aria-label="None" value="" />
+                            <option value={1}>Arpit</option>
+                            <option value={2}>Dushyant</option>
+                            <option value={3}>Prabhat</option>
+                            <option value={4}>Shobha</option>
+                            <option value={5}>Ahmed</option>
+                            <option value={6}>Vambani</option>
+                        </Select>
+                    </FormControl>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -51,7 +62,24 @@ export default class TaskDetails extends React.Component<IProps>{
                         value={formatDate}
                         onChange={this.handleInputChange}
                     />
-                        
+                     <FormControl fullWidth>
+                        <InputLabel>Priority</InputLabel>
+                        <Select
+                            native
+                            fullWidth
+                            value={task.priority}
+                            onChange={this.handleInputChange}
+                            inputProps={{
+                                name: 'priority',
+                                id: 'priority',
+                            }}
+                            >
+                            <option aria-label="None" value="" />
+                            <option value={1}>LOW</option>
+                            <option value={2}>MEDIUM</option>
+                            <option value={3}>HIGH</option>
+                        </Select>
+                    </FormControl>                           
                     </DialogContent>
                     <DialogActions>
                     <Button
