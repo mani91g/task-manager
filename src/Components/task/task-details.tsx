@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import { DialogActions, TextField } from '@material-ui/core';
-
+import * as moment from 'moment';
 
 export default class TaskDetails extends React.Component<IProps>{
     handleInputChange =(e) =>{
@@ -14,6 +14,7 @@ export default class TaskDetails extends React.Component<IProps>{
 
     render() {
         const { task, open } = this.props
+        const formatDate = moment(task.due_date).format('YYYY-MM-DD')
         return (
             <div>
                 <Dialog onClose={this.props.handleClose} fullScreen open={open}>
@@ -45,9 +46,9 @@ export default class TaskDetails extends React.Component<IProps>{
                         margin="dense"
                         id="due_date"
                         label="Due date"
-                        type="string"
+                        type="date"
                         fullWidth
-                        value={task.due_date}
+                        value={formatDate}
                         onChange={this.handleInputChange}
                     />
                         

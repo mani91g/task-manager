@@ -16,6 +16,21 @@ import { isEqual } from 'lodash';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+const styles = theme => ({
+    root: {
+      display: 'flex',
+      marginTop: theme.spacing.unit * 3,
+      overflowX: 'hide',
+    },
+    table: {
+      minWidth: 340,
+    },
+    tableCell: {
+      paddingRight: 4,
+      paddingLeft: 5
+    }
+  });
+
 interface IColumn {
     id: string;
     label: string;
@@ -38,7 +53,6 @@ const columns: IColumn[] = [
 ]    
 
 const getPriority = (value: number): string =>{
-    debugger
     let x =  Number(value) || -1
     return IPriority[x]
 }
@@ -74,9 +88,8 @@ export default class TestComponent extends React.Component<IProps, ILocalState> 
         const { tasks } = this.props
         const { showTask, currentTask, currentIndex } = this.state
         return (<div>
-            <Paper>
-                <TableContainer>
-                    <Table stickyHeader aria-label="sticky table">
+                <TableContainer component={Paper}>
+                    <Table className={"tableBody"} aria-label="sticky table">
                         <TableHead>
                             <TableRow>
                                 {columns.map((column) => (
@@ -88,11 +101,9 @@ export default class TestComponent extends React.Component<IProps, ILocalState> 
                                         {column.label}
                                     </TableCell>                                    
                                 ))}
-                                <TableCell>
-                                        
-        <AddCircleOutlineIcon onClick={this.props.addNewTask}/>
-
-                                    </TableCell>
+                                <TableCell>                                        
+                                    <AddCircleOutlineIcon onClick={this.props.addNewTask}/>
+                                </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -103,7 +114,7 @@ export default class TestComponent extends React.Component<IProps, ILocalState> 
                                             const value = row[column.id];
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
-                                                    {column.format && typeof value === 'number' ? column.format(value) : value}
+                                                    {column.format &&  column.format(value) || value}
                                                 </TableCell>
                                             );
                                         })}
@@ -117,7 +128,6 @@ export default class TestComponent extends React.Component<IProps, ILocalState> 
                         </TableBody>
                     </Table>
                 </TableContainer>
-            </Paper>
             <TaskDetails
                 task={currentTask}
                 handleClose={() => this.setState({ showTask: false })}
