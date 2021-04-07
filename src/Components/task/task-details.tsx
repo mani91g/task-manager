@@ -43,7 +43,7 @@ export default class TaskDetails extends React.Component<IProps>{
                                 id: 'assigned_to',
                             }}
                             >
-                            <option aria-label="None" value="" />
+                            <option value={null}>None</option>
                             <option value={1}>Arpit</option>
                             <option value={2}>Dushyant</option>
                             <option value={3}>Prabhat</option>
@@ -73,8 +73,7 @@ export default class TaskDetails extends React.Component<IProps>{
                                 name: 'priority',
                                 id: 'priority',
                             }}
-                            >
-                            <option aria-label="None" value="" />
+                            >                            
                             <option value={1}>LOW</option>
                             <option value={2}>MEDIUM</option>
                             <option value={3}>HIGH</option>
